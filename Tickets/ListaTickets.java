@@ -21,30 +21,46 @@ public class ListaTickets {
         this.lista = new LinkedList<>();
     }
 
-    public void AgregarTicket(int id,String tipo){
-        Ticket newTicket= new Ticket(id,tipo);
+    public void AgregarTicket(int numero,String tipo){
+        Ticket newTicket= new Ticket(numero,tipo);
         lista.add(newTicket);   
-        indice.put(id, newTicket);
+        indice.put(numero, newTicket);
         
 }
     
     public void EliminarTicket(int id){
-        Ticket ticket = indice.remove(id);
-            if (ticket == null) {
-            return null;
-        
+         Ticket ticketToRemove = indice.remove(id);
+        if (ticketToRemove == null) {
+            
         }
+
+        Queue<Ticket> newQueue = new LinkedList<>();
+        while (!lista.isEmpty()) {
+            Ticket ticket = lista.poll();
+            if (ticket.getNumero() != id) {
+                newQueue.add(ticket);
+            }
+        }
+        lista = newQueue;  
+
+     
     }
+     
+    
     
      
         
     
-    public void BuscarTicket(Ticket ticket){
-        for(Ticket ticket: lista){
-            
+    public Ticket BuscarTicket(String tipo){
+        for(Ticket ticket : lista){
+            if (ticket == ticket){
+                return ticket;
+            }
+            }
+            return null;
         }
             
         }
-    }
+    
     
 
