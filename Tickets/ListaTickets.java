@@ -31,8 +31,7 @@ public class ListaTickets {
     public void EliminarTicket(int id){
         Ticket ticket = indice.remove(id);
             if (ticket == null) {
-            return null;
-        
+            
         }
     }
     
