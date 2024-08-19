@@ -30,7 +30,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "numero=" + numero + ", tipo=" + tipo + '}';
+        return "Ticket: " + " numero " + numero + " tipo:" + tipo ;
     }
     
     

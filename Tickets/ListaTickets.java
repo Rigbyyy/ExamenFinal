@@ -4,6 +4,7 @@
  */
 package Tickets;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -14,43 +15,25 @@ import java.util.Queue;
  */
 public class ListaTickets {
     Queue<Ticket> lista;
-    Map<Integer,Ticket> indice;
+    HashMap<String,Integer> indice;
+    
     
 
     public ListaTickets() {
         this.lista = new LinkedList<>();
     }
 
-    public void AgregarTicket(int numero,String tipo){
-        Ticket newTicket= new Ticket(numero,tipo);
-        lista.add(newTicket);   
-        indice.put(numero, newTicket);
+    public void AgregarTicket(Ticket ticket){
+        lista.add(ticket);   
+       
         
 }
     
     public void EliminarTicket(int id){
-         Ticket ticketToRemove = indice.remove(id);
-        if (ticketToRemove == null) {
-            
-        }
-
-        Queue<Ticket> newQueue = new LinkedList<>();
-        while (!lista.isEmpty()) {
-            Ticket ticket = lista.poll();
-            if (ticket.getNumero() != id) {
-                newQueue.add(ticket);
-            }
-        }
-        lista = newQueue;  
-
-     
-    }
-     
-    
-    
-     
         
+    }
     
+     
     public Ticket BuscarTicket(String tipo){
         for(Ticket ticket : lista){
             if (ticket == ticket){
@@ -59,8 +42,35 @@ public class ListaTickets {
             }
             return null;
         }
+    
+      
+    public void generarTicket(String tipo){
+        if(!indice.containsKey(tipo)){
+           indice.put(tipo,0);
             
         }
+        int numero= indice.get(tipo)+1;
+        indice.put(tipo,numero);
+        
+        Ticket Ticket = new Ticket (numero,tipo);
+        lista.add(Ticket);            
+        }
     
+    public void Atender(){
+        lista.poll();
+    }
+    
+    public Ticket ObtenerSiguienteTicket(){
+        
+        for (Ticket ticket : lista) {
+            if (ticket.getTipo().equals(ticket)) {
+                return ticket;
+            }
+        }
+        return null;
+    }
+        
+    }
+
     
 
